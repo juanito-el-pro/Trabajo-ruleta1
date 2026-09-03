@@ -23,7 +23,18 @@ public class Ruleta {
      */
     public static void menu() {
 // TODO: Repetir el menú hasta que el usuario elija salir.
-    }
+
+        Scanner in = new Scanner(System.in);
+
+        int opcion;
+
+        do {
+            mostrarMenu();
+            opcion = leerOpcion(in);
+            ejecutarOpcion(opcion, in);
+        } while (opcion != 3);
+
+        in.close();}
     /**
      * Muestra en consola las opciones disponibles del menú.
      */
