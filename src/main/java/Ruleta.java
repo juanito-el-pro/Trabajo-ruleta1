@@ -230,7 +230,21 @@ public class Ruleta {
      * rondas jugadas.
      */
     public static void mostrarEstadisticas() {
-// TODO: Calcular y mostrar las estadísticas acumuladas.
-        System.out.println("Aqui se mostraran las estadisticas."); //Test para probar menu
+        int totalApostado = 0;
+        int totalAciertos = 0;
+
+        for (int i = 0; i < historialSize; i++) {
+            totalApostado += historialApuestas[i];
+
+            if (historialAciertos[i]) {
+                totalAciertos++;
+            }
+        }
+
+        System.out.println();
+        System.out.println("|===< Estadisticas >===|");
+        System.out.println("Rondas jugadas: " + historialSize);
+        System.out.println("Monto total apostado: $" + totalApostado);
+        System.out.println("Cantidad de aciertos: " + totalAciertos);
     }
 }
