@@ -55,7 +55,7 @@ public class Ruleta {
      */
     public static int leerOpcion(Scanner in) {
 // TODO: Leer y retornar la opción ingresada.
-        return 0;
+        return in.nextInt();
     }
     /**
      * Ejecuta la acción correspondiente a la opción del menú.
@@ -65,6 +65,25 @@ public class Ruleta {
      */
     public static void ejecutarOpcion(int opcion, Scanner in) {
 // TODO: Ejecutar la acción asociada a la opción.
+
+        public static void ejecutarOpcion(int opcion, Scanner in) {
+            switch (opcion) {
+                case 1:
+                    iniciarRonda(in);
+                    break;
+
+                case 2:
+                    mostrarEstadisticas();
+                    break;
+
+                case 3:
+                    System.out.println("Gracias por jugar, Adios.");
+                    break;
+
+                default:
+                    System.out.println("Opcion no valida.");
+            }
+        }
     }
     /**
      * Inicia una ronda de la ruleta: leer apuesta, girar,
