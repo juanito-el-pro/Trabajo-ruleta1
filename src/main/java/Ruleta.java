@@ -102,9 +102,19 @@ public class Ruleta {
      * param in Scanner para entrada por consola.
      * return el tipo de apuesta elegido.
      */
-    public static char leerTipoApuesta(Scanner in) {
+    public static char leerTipoApuesta(Scanner in) {char tipo;
 // TODO: Leer y validar el tipo de apuesta.
-        return 0;
+        do {
+            System.out.print("Ingrese tipo de apuesta (R/N/P/I): ");
+            tipo = in.next().toUpperCase().charAt(0);
+
+            if (tipo != 'R' && tipo != 'N' && tipo != 'P' && tipo != 'I') {
+                System.out.println("Tipo de apuesta no valido.");
+            }
+
+        } while (tipo != 'R' && tipo != 'N' && tipo != 'P' && tipo != 'I');
+
+        return tipo;
     }
     /**
      * Simula el giro de la ruleta generando un número
@@ -114,7 +124,7 @@ public class Ruleta {
      */
     public static int girarRuleta() {
 // TODO: Generar y retornar un número entre 0 y 36.
-        return 0;
+        return rng.nextInt(37);
     }
     /**
      * Evalúa si la apuesta realizada por el jugador
