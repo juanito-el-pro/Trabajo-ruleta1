@@ -63,10 +63,11 @@ public class Ruleta {
      * @param opcion opción elegida por el usuario.
      * @param in Scanner para entrada por consola.
      */
-    public static void ejecutarOpcion(int opcion, Scanner in) {
-// TODO: Ejecutar la acción asociada a la opción.
 
-        public static void ejecutarOpcion(int opcion, Scanner in) {
+
+    public static void ejecutarOpcion(int opcion, Scanner in) {
+        // TODO: Ejecutar la acción asociada a la opción.
+
             switch (opcion) {
                 case 1:
                     iniciarRonda(in);
@@ -83,7 +84,6 @@ public class Ruleta {
                 default:
                     System.out.println("Opcion no valida.");
             }
-        }
     }
     /**
      * Inicia una ronda de la ruleta: leer apuesta, girar,
@@ -93,17 +93,18 @@ public class Ruleta {
      */
     public static void iniciarRonda(Scanner in) {
 // TODO: Implementar el flujo completo de una ronda.
+        System.out.println("Aqui comenzara la ronda."); //Test para el menu
     }
     /**
      * Permite al usuario seleccionar el tipo de apuesta
      * (R/N/P/I).
      *
-     * @param in Scanner para entrada por consola.
-     * @return el tipo de apuesta elegido.
+     * param in Scanner para entrada por consola.
+     * return el tipo de apuesta elegido.
      */
     public static char leerTipoApuesta(Scanner in) {
 // TODO: Leer y validar el tipo de apuesta.
-        return ’ ’;
+        return 0;
     }
     /**
      * Simula el giro de la ruleta generando un número
@@ -166,5 +167,6 @@ public class Ruleta {
      */
     public static void mostrarEstadisticas() {
 // TODO: Calcular y mostrar las estadísticas acumuladas.
+        System.out.println("Aqui se mostraran las estadisticas."); //Test para probar menu
     }
 }
