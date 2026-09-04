@@ -76,8 +76,21 @@ public class Ruleta {
 
 
     public static int leerMontoApuesta(Scanner in) {
-        System.out.print("Ingrese monto a apostar: ");
-        return in.nextInt();
+        int monto;
+        while (true) {
+            System.out.print("Ingrese monto a apostar: ");
+
+            if (in.hasNextInt()) {
+                monto = in.nextInt();
+                if (monto > 0) {
+                    return monto;
+                }
+                System.out.println("El monto debe ser mayor que 0.");
+            } else {
+                System.out.println("Entrada no valida. Debe ingresar un numero.");
+                in.next();
+            }
+        }
     }
     // lee un numero ingresado para apostar
     public static void iniciarRonda(Scanner in) {
@@ -96,7 +109,7 @@ public class Ruleta {
     }
 
     public static char leerTipoApuesta(Scanner in) {char tipo;
-// TODO: Leer y validar el tipo de apuesta.
+// valida el tipo de apuesta al leerlo
         do {
             System.out.print("Ingrese tipo de apuesta (R/N/P/I): ");
             tipo = in.next().toUpperCase().charAt(0);
@@ -109,24 +122,12 @@ public class Ruleta {
 
         return tipo;
     }
-    /**
-     * Simula el giro de la ruleta generando un número
-     * aleatorio de 0 a 36.
-     *
-     * @return número de la ruleta.
-     */
+
     public static int girarRuleta() {
-// TODO: Generar y retornar un número entre 0 y 36.
+// regrea un valor entre 0 y 36
         return rng.nextInt(CANTIDAD_NUMEROS);
     }
-    /**
-     * Evalúa si la apuesta realizada por el jugador
-     * fue acertada.
-     *
-     * @param numero número obtenido en la ruleta.
-     * @param tipo tipo de apuesta elegida.
-     * @return true si acertó, false si perdió.
-     */
+
     public static boolean evaluarResultado(int numero, char tipo) {
 // evalua el resultado categorizado por su tipo de apuesta
         switch (tipo) {
