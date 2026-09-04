@@ -16,6 +16,42 @@ public class VentanaLogin {
     public VentanaLogin() {
 // TODO: Agregar los usuarios iniciales a la lista
 // TODO: Inicializar y configurar la ventana
+
+        USUARIOS.add(new Usuario("admin", "7777", "Administrador")); //credenciales almacenadas de usuarios para "probar el codigo"
+        USUARIOS.add(new Usuario("juan", "1234", "Juan"));
+
+        frame.setSize(400, 250); //Define el tamaño de la ventana
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Al cerrar la ventana debe terminar el programa
+        frame.setLayout(null);
+
+        lblUsuario.setBounds(50, 40, 100, 25); //Visualmente donde se ubicara el texto del "Usuario:"
+        txtUsuario.setBounds(150, 40, 180, 25); //texto que se escribe visualmente al lado
+
+        lblClave.setBounds(50, 80, 100, 25); // visualmente donde se ubica el texto del "Clave:"
+        txtClave.setBounds(150, 80, 180, 25); // texto que se escribe visualmente al lado
+
+        btnIngresar.setBounds(150, 130, 100, 30);
+
+        frame.add(lblUsuario);
+        frame.add(txtUsuario);
+        frame.add(lblClave);
+        frame.add(txtClave);
+        frame.add(btnIngresar);
+   lblUsuario.setBounds(50, 40, 100, 25);
+        txtUsuario.setBounds(150, 40, 180, 25);
+
+        lblClave.setBounds(50, 80, 100, 25);
+        txtClave.setBounds(150, 80, 180, 25);
+
+        btnIngresar.setBounds(150, 130, 100, 30); //Boton visual
+
+        frame.add(lblUsuario); //agrega todos estos componentes definidos para que esten en la ventana al JFrame
+        frame.add(txtUsuario);
+        frame.add(lblClave);
+        frame.add(txtClave);
+        frame.add(btnIngresar);
+        btnIngresar.addActionListener(e -> login()); // al presionar el boton ingresar se redirige a login
+
     }
     /**
      * Muestra la ventana en pantalla.
