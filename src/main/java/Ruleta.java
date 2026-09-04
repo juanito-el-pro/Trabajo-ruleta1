@@ -136,16 +136,42 @@ public class Ruleta {
      */
     public static boolean evaluarResultado(int numero, char tipo) {
 // TODO: Evaluar el resultado según el tipo de apuesta.
-        return false;
+        switch (tipo) {
+
+            case 'R':
+                return esRojo(numero);
+
+            case 'N':
+                return numero != 0 && !esRojo(numero);
+
+            case 'P':
+                return numero != 0 && numero % 2 == 0;
+
+            case 'I':
+                return numero % 2 != 0;
+
+            default:
+                return false;
+        }
     }
-    /**
-     * Determina si un número corresponde a color rojo.
-     *
+
+
+
+
+
+
+
+    /**Determina si un número corresponde a color rojo.
      * @param n número de la ruleta.
      * @return true si es rojo, false en caso contrario.
      */
     public static boolean esRojo(int n) {
 // TODO: Buscar el número en el arreglo numerosRojos.
+        for (int numeroRojo : numerosRojos) {
+            if (numeroRojo == n) {
+                return true;
+            }
+        }
         return false;
     }
     /**
@@ -156,11 +182,20 @@ public class Ruleta {
      * @param apuesta monto apostado.
      * @param acierto si el jugador acertó o no.
      */
+
     public static void registrarResultado(int numero, int apuesta, boolean acierto) {
 // TODO: Guardar los datos sin superar MAX_HISTORIAL.
+
+        if (historialSize < MAX_HISTORIAL) {
+
+            historialNumeros[historialSize] = numero;
+            historialApuestas[historialSize] = apuesta;
+            historialAciertos[historialSize] = acierto;
+
+            historialSize++;
+        }
     }
-    /**
-     * Muestra en consola el resultado de la ronda.
+    /**Muestra en consola el resultado de la ronda.
      *
      * @param numero número obtenido en la ruleta.
      * @param tipo tipo de apuesta realizada.
@@ -180,3 +215,4 @@ public class Ruleta {
         System.out.println("Aqui se mostraran las estadisticas."); //Test para probar menu
     }
 }
+
