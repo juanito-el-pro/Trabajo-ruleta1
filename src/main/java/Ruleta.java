@@ -93,15 +93,23 @@ public class Ruleta {
      */
     public static void iniciarRonda(Scanner in) {
 // TODO: Implementar el flujo completo de una ronda.
-        System.out.println("Aqui comenzara la ronda."); //Test para el menu
+        System.out.println(); //Test para el menu
+        System.out.println("|===* Nueva Ronda *===|");
+
+        char tipo = leerTipoApuesta(in);
+
+        System.out.print("Ingrese monto a apostar: ");
+        int monto = in.nextInt();
+
+        int numero = girarRuleta();
+
+        boolean acierto = evaluarResultado(numero, tipo);
+
+        registrarResultado(numero, monto, acierto);
+
+        mostrarResultado(numero, tipo, monto, acierto);
     }
-    /**
-     * Permite al usuario seleccionar el tipo de apuesta
-     * (R/N/P/I).
-     *
-     * param in Scanner para entrada por consola.
-     * return el tipo de apuesta elegido.
-     */
+
     public static char leerTipoApuesta(Scanner in) {char tipo;
 // TODO: Leer y validar el tipo de apuesta.
         do {
@@ -154,13 +162,6 @@ public class Ruleta {
                 return false;
         }
     }
-
-
-
-
-
-
-
     /**Determina si un número corresponde a color rojo.
      * @param n número de la ruleta.
      * @return true si es rojo, false en caso contrario.
@@ -202,9 +203,27 @@ public class Ruleta {
      * @param monto monto apostado.
      * @param acierto si el jugador ganó o perdió.
      */
-    public static void mostrarResultado(int numero, char tipo, int monto, boolean
-            acierto) {
+    public static void mostrarResultado(int numero, char tipo, int monto, boolean acierto) {
 // TODO: Mostrar los datos y el resultado de la ronda.
+        System.out.println();
+        System.out.println("|===> Resultado De La Ronda <===|");
+        System.out.println("Numero obtenido: " + numero);
+        System.out.println("Tipo de apuesta: " + tipo);
+        System.out.println("Monto apostado: $" + monto);
+
+        if (numero == 0) {
+            System.out.println("Color: Verde");
+        } else if (esRojo(numero)) {
+            System.out.println("Color: Rojo");
+        } else {
+            System.out.println("Color: Negro");
+        }
+
+        if (acierto) {
+            System.out.println("Resultado: GANASTE");
+        } else {
+            System.out.println("Resultado: PERDISTE");
+        }
     }
     /**
      * Muestra estadísticas generales de todas las
@@ -215,4 +234,3 @@ public class Ruleta {
         System.out.println("Aqui se mostraran las estadisticas."); //Test para probar menu
     }
 }
-
