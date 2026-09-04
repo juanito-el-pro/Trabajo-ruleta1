@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 public class Ruleta {
     public static final int MAX_HISTORIAL = 100;
+    public static final int CANTIDAD_NUMEROS = 37;
     public static int[] historialNumeros = new int[MAX_HISTORIAL];
     public static int[] historialApuestas = new int[MAX_HISTORIAL];
     public static boolean[] historialAciertos = new boolean[MAX_HISTORIAL];
@@ -132,7 +133,7 @@ public class Ruleta {
      */
     public static int girarRuleta() {
 // TODO: Generar y retornar un número entre 0 y 36.
-        return rng.nextInt(37);
+        return rng.nextInt(CANTIDAD_NUMEROS);
     }
     /**
      * Evalúa si la apuesta realizada por el jugador
@@ -232,19 +233,30 @@ public class Ruleta {
     public static void mostrarEstadisticas() {
         int totalApostado = 0;
         int totalAciertos = 0;
+        int gananciaNeta = 0;
 
         for (int i = 0; i < historialSize; i++) {
             totalApostado += historialApuestas[i];
 
             if (historialAciertos[i]) {
                 totalAciertos++;
+                gananciaNeta += historialApuestas[i];
+            } else {
+                gananciaNeta -= historialApuestas[i];
             }
         }
+        double porcentajeAciertos = 0;
 
+        if (historialSize > 0) {
+            porcentajeAciertos = (double) totalAciertos / historialSize * 100;
+        }
         System.out.println();
         System.out.println("|===< Estadisticas >===|");
         System.out.println("Rondas jugadas: " + historialSize);
         System.out.println("Monto total apostado: $" + totalApostado);
         System.out.println("Cantidad de aciertos: " + totalAciertos);
+        System.out.printf("Porcentaje de aciertos: %.2f%%%n", porcentajeAciertos);
+        System.out.println("Ganancia o perdida neta: $" + gananciaNeta);
+
     }
 }
