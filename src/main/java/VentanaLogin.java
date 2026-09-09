@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class VentanaLogin {
     // --- Lista dinámica de usuarios ---
     public static final List USUARIOS = new ArrayList<>();
@@ -37,28 +40,14 @@ public class VentanaLogin {
         frame.add(lblClave);
         frame.add(txtClave);
         frame.add(btnIngresar);
-   lblUsuario.setBounds(50, 40, 100, 25);
-        txtUsuario.setBounds(150, 40, 180, 25);
-
-        lblClave.setBounds(50, 80, 100, 25);
-        txtClave.setBounds(150, 80, 180, 25);
-
-        btnIngresar.setBounds(150, 130, 100, 30); //Boton visual
-
-        frame.add(lblUsuario); //agrega todos estos componentes definidos para que esten en la ventana al JFrame
-        frame.add(txtUsuario);
-        frame.add(lblClave);
-        frame.add(txtClave);
-        frame.add(btnIngresar);
-        btnIngresar.addActionListener(e -> login()); // al presionar el boton ingresar se redirige a login
-
     }
     /**
      * Muestra la ventana en pantalla.
      * Debe centrarla y hacerla visible.
      */
     public void mostrarVentana() {
-// TODO: Centrar y mostrar la ventana
+        frame.setLocationRelativeTo(null); // TODO: Centrar y mostrar la ventana
+        frame.setVisible(true);
     }
     /**
      * Gestiona el inicio de sesión al presionar el botón.
@@ -66,7 +55,18 @@ public class VentanaLogin {
      * ventana o mostrar un mensaje de error.
      */
     private void login() {
-// TODO: Implementar la lógica de inicio de sesión
+ // TODO: Implementar la lógica de inicio de sesión
+
+        String usuario = txtUsuario.getText();
+        String clave = new String(txtClave.getPassword());
+
+        String nombre = validarCredenciales(usuario, clave);
+
+        if (!nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Bienvenido " + nombre);
+        } else {
+            JOptionPane.showMessageDialog(frame, "Usuario o clave incorrectos");
+        }
     }
     /**
      * Valida las credenciales ingresadas utilizando la lista de usuarios.
@@ -78,6 +78,11 @@ public class VentanaLogin {
      */
     private String validarCredenciales(String u, String p) {
 // TODO: Recorrer la lista y validar las credenciales
+        for (Usuario usuario : USUARIOS) {
+            if (usuario.validarCredenciales(u, p)) {
+                return usuario.getNombre();
+            }
+        }
         return "";
     }
     /**
