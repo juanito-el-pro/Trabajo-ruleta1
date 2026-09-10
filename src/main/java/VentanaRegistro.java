@@ -38,6 +38,8 @@ public class VentanaRegistro {
         frame.add(lblClave);
         frame.add(txtClave);
         frame.add(btnRegistrar);
+        btnRegistrar.addActionListener(e -> registrarUsuario());
+
 
     }
     public void abrirVentana() {
@@ -45,6 +47,25 @@ public class VentanaRegistro {
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+    private void registrarUsuario() {
+        String nombre = txtNombre.getText().trim();
+        String usuario = txtUsuario.getText().trim();
+        String clave = new String(txtClave.getPassword());
+
+        if (nombre.isEmpty() || usuario.isEmpty() || clave.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios");
+            return;
+        }
+
+        VentanaLogin.USUARIOS.add(new Usuario(usuario, clave, nombre));
+
+        JOptionPane.showMessageDialog(frame, "Usuario registrado correctamente");
+
+        frame.dispose();
+
+        VentanaLogin ventanaLogin = new VentanaLogin();
+        ventanaLogin.mostrarVentana();
     }
 }
 
