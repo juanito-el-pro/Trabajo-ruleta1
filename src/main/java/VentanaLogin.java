@@ -12,6 +12,7 @@ public class VentanaLogin {
     private final JLabel lblClave = new JLabel("Clave:");
     private final JPasswordField txtClave = new JPasswordField();
     private final JButton btnIngresar = new JButton("Ingresar");
+    private final JButton btnRegistro = new JButton("Registrarse");
     /**
      * Constructor que inicializa la ventana de inicio de sesión.
      * Configura sus componentes y eventos.
@@ -19,7 +20,7 @@ public class VentanaLogin {
     public VentanaLogin() {
 // TODO: Agregar los usuarios iniciales a la lista
 // TODO: Inicializar y configurar la ventana
-
+// Nota: Redistruibuir el constructor XDD
         USUARIOS.add(new Usuario("admin", "7777", "Administrador")); //credenciales almacenadas de usuarios para "probar el codigo"
         USUARIOS.add(new Usuario("juan", "1234", "Juan"));
 
@@ -34,12 +35,18 @@ public class VentanaLogin {
         txtClave.setBounds(150, 80, 180, 25); // texto que se escribe visualmente al lado
 
         btnIngresar.setBounds(150, 130, 100, 30);
+        btnRegistro.setBounds(140, 175, 120, 30);
 
         frame.add(lblUsuario);
         frame.add(txtUsuario);
         frame.add(lblClave);
         frame.add(txtClave);
         frame.add(btnIngresar);
+        frame.add(btnRegistro);
+
+        btnIngresar.addActionListener(e -> login());
+        btnRegistro.addActionListener(e -> abrirRegistro());
+
     }
 
     public void mostrarVentana() {
