@@ -30,6 +30,15 @@ public class VentanaRegistro {
         txtClave.setBounds(150, 120, 180, 25);
 
         btnRegistrar.setBounds(140, 170, 120, 30);
+
+        frame.add(lblNombre);
+        frame.add(txtNombre);
+        frame.add(lblUsuario);
+        frame.add(txtUsuario);
+        frame.add(lblClave);
+        frame.add(txtClave);
+        frame.add(btnRegistrar);
+
     }
     public void abrirVentana() {
         //Contraparte de mostrarVentana en VentanLogin
