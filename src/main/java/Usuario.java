@@ -7,7 +7,7 @@ public class Usuario {
         this.password = password;
         this.nombre = nombre;
     }
-    // Verifica si las credenciales ingresadas pertenecen al usuario
+    //  Verifica si las credenciales ingresadas pertenecen al usuario
     public boolean validarCredenciales(String u, String p) {
         return this.username.equals(u) && this.password.equals(p);
     }

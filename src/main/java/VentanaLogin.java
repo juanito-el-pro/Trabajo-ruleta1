@@ -67,7 +67,7 @@ public class VentanaLogin {
         frame.setVisible(true);
     }
     /**
-     * Gestiona el inicio de sesión al presionar el botón.
+     *  Gestiona el inicio de sesión al presionar el botón.
      * Debe validar las credenciales ingresadas y abrir la siguiente
      * ventana o mostrar un mensaje de error.
      */

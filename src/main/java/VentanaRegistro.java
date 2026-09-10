@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class VentanaRegistro {
 
-    // Objetos visuales para la ventana
+    //  Objetos visuales para la ventana
     private final JFrame frame = new JFrame("Registro - Casino Black Cat");
 
     private final JLabel lblNombre = new JLabel("Nombre:");

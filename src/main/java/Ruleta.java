@@ -20,7 +20,7 @@ public class Ruleta {
         ventanaLogin.mostrarVentana();
     }
     /**
-     * Controla el flujo principal del programa mostrando login
+     *  Controla el flujo principal del programa mostrando login
      *
      */
     public static void menu() {
