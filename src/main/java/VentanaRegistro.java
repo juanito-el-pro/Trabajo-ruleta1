@@ -31,6 +31,12 @@ public class VentanaRegistro {
 
         btnRegistrar.setBounds(140, 170, 120, 30);
     }
+    public void abrirVentana() {
+        //Contraparte de mostrarVentana en VentanLogin
+
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 }
 
 

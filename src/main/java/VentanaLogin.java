@@ -98,6 +98,6 @@ public class VentanaLogin {
         frame.dispose();
 
         VentanaRegistro ventanaRegistro = new VentanaRegistro();
-        ventanaRegistro.mostrarVentana();
+        ventanaRegistro.abrirVentana();
     }
 }
