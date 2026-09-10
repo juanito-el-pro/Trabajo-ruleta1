@@ -17,9 +17,16 @@ public class VentanaRegistro {
     private final JButton btnRegistrar = new JButton("Registrar");
 
     public VentanaRegistro() {
+        configurarVentana();
+        agregarComponentes();
+        configurarEventos();
+    }
+    private void configurarVentana () {
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+    }
+    private void agregarComponentes() {
         lblNombre.setBounds(50, 40, 100, 25);
         txtNombre.setBounds(150, 40, 180, 25);
 
@@ -38,9 +45,10 @@ public class VentanaRegistro {
         frame.add(lblClave);
         frame.add(txtClave);
         frame.add(btnRegistrar);
+    }
+
+    private void configurarEventos(){
         btnRegistrar.addActionListener(e -> registrarUsuario());
-
-
     }
     public void abrirVentana() {
         //Contraparte de mostrarVentana en VentanLogin

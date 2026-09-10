@@ -18,18 +18,28 @@ public class VentanaLogin {
      * Configura sus componentes y eventos.
      */
     public VentanaLogin() {
-// TODO: Agregar los usuarios iniciales a la lista
+
 // TODO: Inicializar y configurar la ventana
-// Nota: Redistruibuir el constructor XDD
+    inicializarUsuarios();
+    configurarVentana();
+    agregarComponentes();
+    configurarEventos();
+
+    }
+    private void inicializarUsuarios() {
+        //Agrega usuarios en caso de que no hayan
+
         if (USUARIOS.isEmpty()) {
             USUARIOS.add(new Usuario("admin", "7777", "Administrador"));
             USUARIOS.add(new Usuario("juan", "1234", "Juan"));
         }
-
+    }
+    private void configurarVentana() {
         frame.setSize(400, 250); //Define el tamaño de la ventana
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Al cerrar la ventana debe terminar el programa
         frame.setLayout(null);
-
+    }
+    private void agregarComponentes() {
         lblUsuario.setBounds(50, 40, 100, 25); //Visualmente donde se ubicara el texto del "Usuario:"
         txtUsuario.setBounds(150, 40, 180, 25); //texto que se escribe visualmente al lado
 
@@ -45,10 +55,11 @@ public class VentanaLogin {
         frame.add(txtClave);
         frame.add(btnIngresar);
         frame.add(btnRegistro);
-
+    }
+    private void configurarEventos() {
+        //redirige segun el boton marcadado
         btnIngresar.addActionListener(e -> login());
         btnRegistro.addActionListener(e -> abrirRegistro());
-
     }
 
     public void mostrarVentana() {
