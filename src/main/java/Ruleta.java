@@ -12,16 +12,16 @@ public class Ruleta {
             1, 3, 5, 7, 9, 12, 14, 16, 18,
             19, 21, 23, 25, 27, 30, 32, 34, 36
     };
-    /**
-     * Método principal: inicia el programa llamando al menú.
-     */
+
+     // Metodo principal: inicia el programa mostrando la ventana de login.
+
     public static void main(String[] args) {
         VentanaLogin ventanaLogin = new VentanaLogin();
         ventanaLogin.mostrarVentana();
     }
     /**
-     * Controla el flujo principal del programa mostrando
-     * un menú en consola.
+     * Controla el flujo principal del programa mostrando login
+     *
      */
     public static void menu() {
 // TODO: Repetir el menú hasta que el usuario elija salir.
@@ -50,6 +50,11 @@ public class Ruleta {
 
     public static int leerOpcion(Scanner in) {
 // devuelve la opcion ingresada
+        while (!in.hasNextInt()) {
+            System.out.println("Entrada no valida. Debe ingresar un numero.");
+            in.next();
+            System.out.print("Seleccione una opcion: ");
+        }
         return in.nextInt();
     }
 
