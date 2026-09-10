@@ -24,7 +24,7 @@ public class Ruleta {
      *
      */
     public static void menu() {
-// TODO: Repetir el menú hasta que el usuario elija salir.
+//  Repetir el menú hasta que el usuario elija salir.
 
         Scanner in = new Scanner(System.in);
 
