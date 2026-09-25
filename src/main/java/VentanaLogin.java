@@ -82,7 +82,8 @@ public class VentanaLogin {
         if (!nombre.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Bienvenido " + nombre);
             frame.dispose(); //cierra la ventana
-            Ruleta.menu(); // llama el menu de Ruleta
+            VentanaMenu ventanaMenu = new VentanaMenu(); // llama el menu de Ruleta
+            ventanaMenu.mostrarVentana();
         } else {
             JOptionPane.showMessageDialog(frame, "Usuario o clave incorrectos");
         }
