@@ -56,8 +56,7 @@ public class VentanaMenu {
     private void abrirEstadisticas() {
         frame.dispose();
 
-        VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
-        ventanaEstadisticas.mostrarVentana();
+
     }
 
     private void salir() {
