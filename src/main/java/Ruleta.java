@@ -15,16 +15,7 @@ public class Ruleta {
             19, 21, 23, 25, 27, 30, 32, 34, 36
     };
 
-     // Metodo principal: inicia el programa mostrando la ventana de login.
-
-    public static void main(String[] args) {
-        VentanaLogin ventanaLogin = new VentanaLogin();
-        ventanaLogin.mostrarVentana();
-    }
-    /**
-     *  Controla el flujo principal del programa mostrando login
-     *
-     */
+     // funcion principal, mantener la logica del programa
 
     public static int girarRuleta() {
 // regrea un valor entre 0 y 36
