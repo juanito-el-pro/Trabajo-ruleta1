@@ -117,6 +117,9 @@ public class Ruleta {
         }
         return (double) calcularTotalAciertos() / historialSize * 100;
     }
+    public static void reiniciarHistorial() {
+        historialSize = 0;
+    }
 }
 
 
