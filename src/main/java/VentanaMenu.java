@@ -19,6 +19,7 @@ public class VentanaMenu {
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+
     }
 
     private void agregarComponentes() {
@@ -55,7 +56,6 @@ public class VentanaMenu {
 
     private void abrirEstadisticas() {
         frame.dispose();
-
 
     }
 

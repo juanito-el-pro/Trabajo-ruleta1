@@ -1,8 +1,10 @@
 import java.util.Random;
-import java.util.Scanner;
+
 public class Ruleta {
+
     public static final int MAX_HISTORIAL = 100;
     public static final int CANTIDAD_NUMEROS = 37;
+
     public static int[] historialNumeros = new int[MAX_HISTORIAL];
     public static int[] historialApuestas = new int[MAX_HISTORIAL];
     public static boolean[] historialAciertos = new boolean[MAX_HISTORIAL];
