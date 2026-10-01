@@ -63,5 +63,7 @@ public class VentanaMenu {
 
     private void salir() {
         frame.dispose();
+        VentanaLogin ventanaLogin = new VentanaLogin();
+        ventanaLogin.mostrarVentana();
     }
 }

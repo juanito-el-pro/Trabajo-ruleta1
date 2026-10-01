@@ -50,7 +50,8 @@ public class VentanaRegistro {
     private void configurarEventos(){
         btnRegistrar.addActionListener(e -> registrarUsuario());
     }
-    public void abrirVentana() {
+
+    public void mostrarVentana() {
         //Contraparte de mostrarVentana en VentanLogin
 
         frame.setLocationRelativeTo(null);
