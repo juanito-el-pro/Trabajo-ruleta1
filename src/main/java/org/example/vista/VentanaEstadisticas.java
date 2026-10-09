@@ -1,12 +1,16 @@
-package org.example;
+package org.example.vista;
+
+import org.example.controlador.ResultadoController;
+import org.example.controlador.SessionController;
 
 import javax.swing.*;
-import org.example.modelo.Ruleta;
 
 public class VentanaEstadisticas {
 
+    private final SessionController session;
+    private final ResultadoController resultadoCtrl;
+
     private final JFrame frame = new JFrame("Estadísticas - Casino Black Cat");
-    private final Ruleta ruleta;
 
     private final JLabel lblTitulo = new JLabel("Estadísticas de la Ruleta");
     private final JLabel lblRondas = new JLabel();
@@ -14,10 +18,13 @@ public class VentanaEstadisticas {
     private final JLabel lblAciertos = new JLabel();
     private final JLabel lblPorcentaje = new JLabel();
     private final JLabel lblGanancia = new JLabel();
+    private final JLabel lblSaldo = new JLabel();
     private final JButton btnVolver = new JButton("Volver al menú");
 
-    public VentanaEstadisticas(Ruleta ruleta) {
-        this.ruleta = ruleta;
+    public VentanaEstadisticas(SessionController session) {
+        this.session = session;
+        this.resultadoCtrl = new ResultadoController(session.getRuleta());
+
         configurarVentana();
         agregarComponentes();
         cargarEstadisticas();
@@ -25,7 +32,7 @@ public class VentanaEstadisticas {
     }
 
     private void configurarVentana() {
-        frame.setSize(420, 360);
+        frame.setSize(420, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
     }
@@ -37,7 +44,8 @@ public class VentanaEstadisticas {
         lblAciertos.setBounds(50, 140, 320, 25);
         lblPorcentaje.setBounds(50, 170, 320, 25);
         lblGanancia.setBounds(50, 200, 320, 25);
-        btnVolver.setBounds(130, 260, 160, 35);
+        lblSaldo.setBounds(50, 230, 320, 25);
+        btnVolver.setBounds(130, 290, 160, 35);
 
         frame.add(lblTitulo);
         frame.add(lblRondas);
@@ -45,22 +53,19 @@ public class VentanaEstadisticas {
         frame.add(lblAciertos);
         frame.add(lblPorcentaje);
         frame.add(lblGanancia);
+        frame.add(lblSaldo);
         frame.add(btnVolver);
     }
 
-    /** Solo lee valores calculados por Ruleta; no calcula nada. */
+    /** Solo lee valores desde el controlador; no calcula nada. */
     private void cargarEstadisticas() {
-        int rondas = ruleta.getCantidadRondas();
-        int totalApostado = ruleta.calcularTotalApostado();
-        int totalAciertos = ruleta.calcularTotalAciertos();
-        double porcentaje = ruleta.calcularPorcentajeAciertos();
-        int gananciaNeta = ruleta.calcularGananciaNeta();
-
-        lblRondas.setText("Rondas jugadas: " + rondas);
-        lblTotalApostado.setText("Monto total apostado: $" + totalApostado);
-        lblAciertos.setText("Cantidad de aciertos: " + totalAciertos);
-        lblPorcentaje.setText(String.format("Porcentaje de aciertos: %.2f%%", porcentaje));
-        lblGanancia.setText("Ganancia o pérdida neta: $" + gananciaNeta);
+        lblRondas.setText("Rondas jugadas: " + resultadoCtrl.getCantidadRondas());
+        lblTotalApostado.setText("Monto total apostado: $" + resultadoCtrl.getTotalApostado());
+        lblAciertos.setText("Cantidad de aciertos: " + resultadoCtrl.getTotalAciertos());
+        lblPorcentaje.setText(String.format("Porcentaje de aciertos: %.2f%%",
+                resultadoCtrl.getPorcentajeAciertos()));
+        lblGanancia.setText("Ganancia o pérdida neta: $" + resultadoCtrl.getGananciaNeta());
+        lblSaldo.setText("Saldo actual: $" + session.getRuleta().getSaldo());
     }
 
     private void configurarEventos() {
@@ -69,7 +74,7 @@ public class VentanaEstadisticas {
 
     private void volverAlMenu() {
         frame.dispose();
-        VentanaMenu ventanaMenu = new VentanaMenu(ruleta);
+        VentanaMenu ventanaMenu = new VentanaMenu(session);
         ventanaMenu.mostrarVentana();
     }
 
