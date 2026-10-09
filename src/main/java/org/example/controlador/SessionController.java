@@ -40,7 +40,7 @@ public class SessionController {
         for (Usuario u : usuarios) {
             if (u.validarCredenciales(usuario, clave)) {
                 this.usuarioActual = u;
-                this.ruleta = new Ruleta(1000);  // ← temporal para pruebas
+                this.ruleta = new Ruleta();  // ← temporal para pruebas
                 return true;
             }
         }
