@@ -1,3 +1,5 @@
+import org.example.modelo.Usuario;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class VentanaLogin {
         frame.setLayout(null);
     }
     private void agregarComponentes() {
-        lblUsuario.setBounds(50, 40, 100, 25); //Visualmente donde se ubicara el texto del "Usuario:"
+        lblUsuario.setBounds(50, 40, 100, 25); //Visualmente donde se ubicara el texto del "org.example.modelo.Usuario:"
         txtUsuario.setBounds(150, 40, 180, 25); //texto que se escribe visualmente al lado
 
         lblClave.setBounds(50, 80, 100, 25); // visualmente donde se ubica el texto del "Clave:"

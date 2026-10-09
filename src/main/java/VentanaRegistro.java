@@ -1,3 +1,5 @@
+import org.example.modelo.Usuario;
+
 import javax.swing.*;
 
 public class VentanaRegistro {
