@@ -13,6 +13,8 @@ public class VentanaMenu {
     private final JLabel lblBienvenida = new JLabel();
     private final JLabel lblSaldo = new JLabel();
 
+    private final JButton btnPerfil = new JButton("Mi Perfil");
+
     private final JButton btnJugar = new JButton("Jugar Ruleta");
     private final JButton btnEstadisticas = new JButton("Estadísticas");
     private final JButton btnSalir = new JButton("Salir");
@@ -34,15 +36,18 @@ public class VentanaMenu {
     private void agregarComponentes() {
         lblBienvenida.setBounds(30, 15, 340, 25);
         lblSaldo.setBounds(30, 40, 340, 25);
+// botones a partir de y=90 en adelante (los del bloque de arriba)
 
         btnJugar.setBounds(120, 90, 160, 40);
-        btnEstadisticas.setBounds(120, 150, 160, 40);
-        btnSalir.setBounds(120, 210, 160, 40);
+        btnEstadisticas.setBounds(120, 140, 160, 40);
+        btnPerfil.setBounds(120, 190, 160, 40);
+        btnSalir.setBounds(120, 240, 160, 40);
 
         frame.add(lblBienvenida);
         frame.add(lblSaldo);
         frame.add(btnJugar);
         frame.add(btnEstadisticas);
+        frame.add(btnPerfil);
         frame.add(btnSalir);
     }
 
@@ -56,7 +61,14 @@ public class VentanaMenu {
     private void configurarEventos() {
         btnJugar.addActionListener(e -> abrirRuleta());
         btnEstadisticas.addActionListener(e -> abrirEstadisticas());
+        btnPerfil.addActionListener(e -> abrirPerfil());
         btnSalir.addActionListener(e -> cerrarSesion());
+    }
+
+    private void abrirPerfil() {
+        frame.dispose();
+        VentanaPerfil ventanaPerfil = new VentanaPerfil(session);
+        ventanaPerfil.mostrarVentana();
     }
 
     public void mostrarVentana() {
