@@ -96,7 +96,7 @@ public class Ruleta {
         }
     }
 
-    private boolean esRojo(int n) {
+    public boolean esRojo(int n) {
         for (int rojo : NUMEROS_ROJOS) {
             if (rojo == n) {
                 return true;

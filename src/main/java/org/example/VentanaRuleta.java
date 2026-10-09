@@ -1,11 +1,15 @@
+package org.example;
+
 import javax.swing.*;
+import org.example.modelo.Ruleta;
+import org.example.modelo.Resultado;
+import org.example.modelo.TipoApuesta;
 
 public class VentanaRuleta {
 
-    // Ventana
     private final JFrame frame = new JFrame("Ruleta - Casino Black Cat");
+    private final Ruleta ruleta;
 
-    // Componentes
     private final JLabel lblTipo = new JLabel("Tipo de apuesta:");
     private final JComboBox<String> cmbTipo =
             new JComboBox<>(new String[]{"Rojo", "Negro", "Par", "Impar"});
@@ -18,7 +22,8 @@ public class VentanaRuleta {
 
     private final JLabel lblResultado = new JLabel("Resultado: ");
 
-    public VentanaRuleta() {
+    public VentanaRuleta(Ruleta ruleta) {
+        this.ruleta = ruleta;
         configurarVentana();
         agregarComponentes();
         configurarEventos();
@@ -31,18 +36,13 @@ public class VentanaRuleta {
     }
 
     private void agregarComponentes() {
-
         lblTipo.setBounds(50, 40, 120, 25);
         cmbTipo.setBounds(180, 40, 180, 25);
-
         lblMonto.setBounds(50, 80, 120, 25);
         txtMonto.setBounds(180, 80, 180, 25);
-
         btnGirar.setBounds(150, 130, 120, 35);
-
-        lblResultado.setBounds(50, 180, 340, 70);
-
-        btnVolver.setBounds(150, 270, 120, 35);
+        lblResultado.setBounds(50, 180, 340, 90);
+        btnVolver.setBounds(150, 280, 120, 35);
 
         frame.add(lblTipo);
         frame.add(cmbTipo);
@@ -54,9 +54,7 @@ public class VentanaRuleta {
     }
 
     private void configurarEventos() {
-
         btnGirar.addActionListener(e -> girar());
-
         btnVolver.addActionListener(e -> volverAlMenu());
     }
 
@@ -64,29 +62,25 @@ public class VentanaRuleta {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-    private char obtenerTipoApuesta() {
 
+    private TipoApuesta obtenerTipoApuesta() {
         String tipo = (String) cmbTipo.getSelectedItem();
-
         switch (tipo) {
-            case "Rojo": return 'R';
-
-            case "Negro": return 'N';
-
-            case "Par": return 'P';
-
-            case "Impar": return 'I';
-
-            default: return 'R';
+            case "Rojo":  return TipoApuesta.ROJO;
+            case "Negro": return TipoApuesta.NEGRO;
+            case "Par":   return TipoApuesta.PAR;
+            case "Impar": return TipoApuesta.IMPAR;
+            default:      return TipoApuesta.ROJO;
         }
     }
 
-    private int leerMonto() {
+    private void girar() {
+        TipoApuesta tipo = obtenerTipoApuesta();
         String texto = txtMonto.getText().trim();
 
         if (texto.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Ingrese un monto.");
-            return -1;
+            return;
         }
 
         int monto;
@@ -94,47 +88,34 @@ public class VentanaRuleta {
             monto = Integer.parseInt(texto);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame, "Ingrese un monto numérico.");
-            return -1;
+            return;
         }
 
-        if (!Ruleta.esMontoValido(monto)) {
-            JOptionPane.showMessageDialog(frame, "El monto debe ser mayor que 0.");
-            return -1;
+        Resultado r;
+        try {
+            r = ruleta.apostar(tipo, monto);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage());
+            return;
         }
 
-        return monto;
-    }
+        String color = ruleta.obtenerColor(r.getNumero());
+        String estado = r.isAcierto() ? "GANASTE" : "PERDISTE";
 
-    private void girar() {
-        char tipo = obtenerTipoApuesta();
-        int monto = leerMonto();
-
-        if (monto < 0) {
-            return;   // leerMonto ya mostró el error
-        }
-
-        // Lógica delegada a Ruleta
-        int numero = Ruleta.girarRuleta();
-        boolean acierto = Ruleta.evaluarResultado(numero, tipo);
-        Ruleta.registrarResultado(numero, monto, acierto);
-        String color = Ruleta.obtenerColor(numero);
-
-        // Mostrar el resultado
-        String estado = acierto ? "GANASTE" : "PERDISTE";
         lblResultado.setText(
                 "<html>Resultado: " + estado +
-                        "<br>Número: " + numero + " (" + color + ")" +
-                        "<br>Tipo de apuesta: " + (String) cmbTipo.getSelectedItem() +
-                        "<br>Monto apostado: $" + monto + "</html>"
+                        "<br>Número: " + r.getNumero() + " (" + color + ")" +
+                        "<br>Tipo: " + r.getTipo() +
+                        "<br>Monto: $" + r.getMonto() +
+                        "<br>Saldo actual: $" + ruleta.getSaldo() + "</html>"
         );
 
-        txtMonto.setText("");   // limpiar para la próxima jugada
+        txtMonto.setText("");
     }
 
     private void volverAlMenu() {
         frame.dispose();
-
-        VentanaMenu ventanaMenu = new VentanaMenu();
+        VentanaMenu ventanaMenu = new VentanaMenu(ruleta);
         ventanaMenu.mostrarVentana();
     }
 }

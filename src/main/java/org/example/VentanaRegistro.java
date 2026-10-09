@@ -1,3 +1,5 @@
+package org.example;
+
 import org.example.modelo.Usuario;
 
 import javax.swing.*;

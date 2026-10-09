@@ -1,22 +1,23 @@
+package org.example;
+
 import javax.swing.*;
+import org.example.modelo.Ruleta;
 
 public class VentanaEstadisticas {
 
-    // Ventana
     private final JFrame frame = new JFrame("Estadísticas - Casino Black Cat");
+    private final Ruleta ruleta;
 
-    // Componentes
     private final JLabel lblTitulo = new JLabel("Estadísticas de la Ruleta");
-
     private final JLabel lblRondas = new JLabel();
     private final JLabel lblTotalApostado = new JLabel();
     private final JLabel lblAciertos = new JLabel();
     private final JLabel lblPorcentaje = new JLabel();
     private final JLabel lblGanancia = new JLabel();
-
     private final JButton btnVolver = new JButton("Volver al menú");
 
-    public VentanaEstadisticas() {
+    public VentanaEstadisticas(Ruleta ruleta) {
+        this.ruleta = ruleta;
         configurarVentana();
         agregarComponentes();
         cargarEstadisticas();
@@ -31,13 +32,11 @@ public class VentanaEstadisticas {
 
     private void agregarComponentes() {
         lblTitulo.setBounds(120, 20, 200, 30);
-
         lblRondas.setBounds(50, 80, 320, 25);
         lblTotalApostado.setBounds(50, 110, 320, 25);
         lblAciertos.setBounds(50, 140, 320, 25);
         lblPorcentaje.setBounds(50, 170, 320, 25);
         lblGanancia.setBounds(50, 200, 320, 25);
-
         btnVolver.setBounds(130, 260, 160, 35);
 
         frame.add(lblTitulo);
@@ -49,16 +48,13 @@ public class VentanaEstadisticas {
         frame.add(btnVolver);
     }
 
-    /**
-     * Pide a Ruleta los valores calculados y los coloca en las etiquetas.
-     * La ventana no calcula nada: solo muestra.
-     */
+    /** Solo lee valores calculados por Ruleta; no calcula nada. */
     private void cargarEstadisticas() {
-        int rondas = Ruleta.historialSize;
-        int totalApostado = Ruleta.calcularTotalApostado();
-        int totalAciertos = Ruleta.calcularTotalAciertos();
-        double porcentaje = Ruleta.calcularPorcentajeAciertos();
-        int gananciaNeta = Ruleta.calcularGananciaNeta();
+        int rondas = ruleta.getCantidadRondas();
+        int totalApostado = ruleta.calcularTotalApostado();
+        int totalAciertos = ruleta.calcularTotalAciertos();
+        double porcentaje = ruleta.calcularPorcentajeAciertos();
+        int gananciaNeta = ruleta.calcularGananciaNeta();
 
         lblRondas.setText("Rondas jugadas: " + rondas);
         lblTotalApostado.setText("Monto total apostado: $" + totalApostado);
@@ -73,7 +69,7 @@ public class VentanaEstadisticas {
 
     private void volverAlMenu() {
         frame.dispose();
-        VentanaMenu ventanaMenu = new VentanaMenu();
+        VentanaMenu ventanaMenu = new VentanaMenu(ruleta);
         ventanaMenu.mostrarVentana();
     }
 
