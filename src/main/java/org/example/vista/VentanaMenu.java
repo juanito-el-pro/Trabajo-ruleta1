@@ -16,6 +16,7 @@ public class VentanaMenu {
     private final JButton btnPerfil = new JButton("Mi Perfil");
 
     private final JButton btnJugar = new JButton("Jugar Ruleta");
+    private final JButton btnHistorial = new JButton("Historial de jugadas");  // ← NUEVO
     private final JButton btnEstadisticas = new JButton("Estadísticas");
     private final JButton btnSalir = new JButton("Salir");
 
@@ -28,7 +29,7 @@ public class VentanaMenu {
     }
 
     private void configurarVentana() {
-        frame.setSize(400, 340);
+        frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
     }
@@ -36,17 +37,19 @@ public class VentanaMenu {
     private void agregarComponentes() {
         lblBienvenida.setBounds(30, 15, 340, 25);
         lblSaldo.setBounds(30, 40, 340, 25);
-// botones a partir de y=90 en adelante (los del bloque de arriba)
 
-        btnJugar.setBounds(120, 90, 160, 40);
-        btnEstadisticas.setBounds(120, 140, 160, 40);
-        btnPerfil.setBounds(120, 190, 160, 40);
-        btnSalir.setBounds(120, 240, 160, 40);
+
+        btnJugar.setBounds(120, 80, 160, 38);
+        btnEstadisticas.setBounds(120, 125, 160, 38);
+        btnHistorial.setBounds(120, 170, 160, 38);
+        btnPerfil.setBounds(120, 215, 160, 38);
+        btnSalir.setBounds(120, 260, 160, 38);
 
         frame.add(lblBienvenida);
         frame.add(lblSaldo);
         frame.add(btnJugar);
         frame.add(btnEstadisticas);
+        frame.add(btnHistorial);
         frame.add(btnPerfil);
         frame.add(btnSalir);
     }
@@ -62,6 +65,7 @@ public class VentanaMenu {
         btnJugar.addActionListener(e -> abrirRuleta());
         btnEstadisticas.addActionListener(e -> abrirEstadisticas());
         btnPerfil.addActionListener(e -> abrirPerfil());
+        btnHistorial.addActionListener(e -> abrirHistorial());
         btnSalir.addActionListener(e -> cerrarSesion());
     }
 
@@ -80,6 +84,11 @@ public class VentanaMenu {
         frame.dispose();
         VentanaRuleta ventanaRuleta = new VentanaRuleta(session);
         ventanaRuleta.mostrarVentana();
+    }
+    private void abrirHistorial() {
+        frame.dispose();
+        VentanaHistorial ventanaHistorial = new VentanaHistorial(session);
+        ventanaHistorial.mostrarVentana();
     }
 
     private void abrirEstadisticas() {
