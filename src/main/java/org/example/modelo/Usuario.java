@@ -1,16 +1,21 @@
 package org.example.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 
     private String username;
     private String password;
     private String nombre;
+    private final List<Resultado> historial;
 
     /** Constructor con parámetros. */
     public Usuario(String username, String password, String nombre) {
         this.username = username;
         this.password = password;
         setNombre(nombre);
+        this.historial = new ArrayList<>();
     }
 
     /** Constructor sin parámetros: crea un usuario invitado. */
@@ -38,5 +43,14 @@ public class Usuario {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
         this.nombre = nombre;
+    }
+
+    // ===== Historial: asociación 1 a muchos con Resultado =====
+    public void agregarResultado(Resultado r) {
+        historial.add(r);
+    }
+
+    public List<Resultado> getHistorial() {
+        return historial;
     }
 }

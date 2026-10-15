@@ -14,12 +14,10 @@ public class SessionController {
 
     public SessionController() {
         this.usuarios = new ArrayList<>();
-        // Usuarios de prueba, igual que antes
         usuarios.add(new Usuario("admin", "7777", "Administrador"));
         usuarios.add(new Usuario("juan", "1234", "Juan"));
     }
 
-    /** Registra un usuario nuevo. Lanza excepción si los datos no son válidos. */
     public void registrarUsuario(String usuario, String clave, String nombre) {
         if (usuario == null || usuario.isBlank()
                 || clave == null || clave.isBlank()
@@ -29,18 +27,11 @@ public class SessionController {
         usuarios.add(new Usuario(usuario, clave, nombre));
     }
 
-    /**
-     * Intenta iniciar sesión. Si las credenciales son válidas:
-     *  - guarda el usuario como actual,
-     *  - crea su Ruleta (con saldo temporal de prueba),
-     *  - devuelve true.
-     * Si no, devuelve false y no cambia el estado.
-     */
     public boolean iniciarSession(String usuario, String clave) {
         for (Usuario u : usuarios) {
             if (u.validarCredenciales(usuario, clave)) {
                 this.usuarioActual = u;
-                this.ruleta = new Ruleta();  // ← temporal para pruebas
+                this.ruleta = new Ruleta();  // saldo 0
                 return true;
             }
         }
@@ -68,7 +59,6 @@ public class SessionController {
         return ruleta;
     }
 
-    /** Cambia el nombre del usuario actual. */
     public void setNombreUsuario(String nuevoNombre) {
         if (hayUsuario()) {
             usuarioActual.setNombre(nuevoNombre);

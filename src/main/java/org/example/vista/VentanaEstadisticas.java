@@ -23,7 +23,7 @@ public class VentanaEstadisticas {
 
     public VentanaEstadisticas(SessionController session) {
         this.session = session;
-        this.resultadoCtrl = new ResultadoController(session.getRuleta());
+        this.resultadoCtrl = new ResultadoController(session.getRuleta(), session);
 
         configurarVentana();
         agregarComponentes();

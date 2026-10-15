@@ -30,8 +30,8 @@ public class VentanaRuleta {
 
     public VentanaRuleta(SessionController session) {
         this.session = session;
-        this.ruletaCtrl = new RuletaController(session.getRuleta());
-        this.resultadoCtrl = new ResultadoController(session.getRuleta());
+        this.ruletaCtrl = new RuletaController(session.getRuleta(), session);
+        this.resultadoCtrl = new ResultadoController(session.getRuleta(), session);
 
         configurarVentana();
         agregarComponentes();
