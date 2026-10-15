@@ -7,27 +7,29 @@ import org.example.modelo.TipoApuesta;
 public class RuletaController {
 
     private final Ruleta ruleta;
+    private final SessionController session;
 
-    public RuletaController(Ruleta ruleta) {
+    public RuletaController(Ruleta ruleta, SessionController session) {
         this.ruleta = ruleta;
+        this.session = session;
     }
 
     /**
-     * Coordina una apuesta:
-     *  1. Solicita al modelo procesar la ronda.
-     *  2. Devuelve el Resultado a la Vista.
-     * Las reglas (monto válido, saldo suficiente, ganar/perder) las aplica el Modelo.
+     * Coordina una apuesta completa:
+     *  1. Pide al modelo procesar la ronda.
+     *  2. Registra el Resultado en el historial del usuario actual.
+     *  3. Devuelve el Resultado a la Vista.
      */
     public Resultado realizarApuesta(TipoApuesta tipo, int monto) {
-        return ruleta.apostar(tipo, monto);
+        Resultado r = ruleta.apostar(tipo, monto);
+        session.getUsuarioActual().agregarResultado(r);
+        return r;
     }
 
-    /** Coordina una recarga de saldo. */
     public void depositar(int monto) {
         ruleta.depositar(monto);
     }
 
-    /** Consulta el saldo actual. */
     public int getSaldo() {
         return ruleta.getSaldo();
     }
