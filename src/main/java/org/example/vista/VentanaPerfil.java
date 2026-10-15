@@ -30,7 +30,7 @@ public class VentanaPerfil {
 
     public VentanaPerfil(SessionController session) {
         this.session = session;
-        this.ruletaCtrl = new RuletaController(session.getRuleta());
+        this.ruletaCtrl = new RuletaController(session.getRuleta(), session);
 
         configurarVentana();
         agregarComponentes();
