@@ -45,7 +45,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    // ===== Historial (asociación 1 a muchos con Resultado) =====
+    // ===== Historial: asociación 1 a muchos con Resultado =====
     public void agregarResultado(Resultado r) {
         historial.add(r);
     }
