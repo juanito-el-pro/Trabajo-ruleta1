@@ -2,6 +2,7 @@ package org.example.controlador;
 
 import org.example.modelo.Resultado;
 import org.example.modelo.Ruleta;
+import org.example.modelo.Estadisticas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,11 @@ public class ResultadoController {
             i++;
         }
         return lineas;
+    }
+    /** Calcula y devuelve las estadísticas del usuario actual. */
+    public Estadisticas getEstadisticasUsuario() {
+        List<Resultado> historial = session.getUsuarioActual().getHistorial();
+        return new Estadisticas(historial);
     }
 
     // ===== Datos para la ventana de estadísticas =====
